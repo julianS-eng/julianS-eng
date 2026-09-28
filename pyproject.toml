@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "imvfd-demo"
+version = "0.1.0"
+description = "Steady-state induction-motor / scalar V-Hz VFD simulation used to back the numbers shown in this GitHub profile README."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Julian Stiven Cardona Martinez" }]
+dependencies = [
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+generate-report = "imvfd_demo.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/imvfd_demo"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "N", "D"]
+ignore = ["D203", "D213"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["imvfd_demo"]
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
