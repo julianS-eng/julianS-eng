@@ -41,7 +41,6 @@ ignore = ["D203", "D213"]
 "tests/*" = ["D"]
 
 [tool.mypy]
-python_version = "3.11"
 strict = true
 packages = ["imvfd_demo"]
 mypy_path = "src"
